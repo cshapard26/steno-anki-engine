@@ -11,7 +11,7 @@ clippy_2_to_anki is a low-weight python script that parses the clippy2 .org file
 clippy_2_to_anki is for any steno learner using Plover who wants to systematically improve their knowlege of briefs according to their self-determined usefulness. Why memorize a thousand briefs you'll never use when you already have a list of one's you would use everyday?
 
 ### Why did I make it?
-Though clippy_2 is a wonderful program that generates an immense amount of data, its strength is it's downfall. The amount of data may be useful to some, but the average learner doesn't need most of it, so I built this program to strip the data down into its core pieces—words and briefs—then parse those into a format that Anki can read.
+Though clippy_2 is a wonderful program that generates an immense amount of data, its strength is its downfall. The amount of data may be useful to some, but the average learner doesn't need most of it, so I built this program to strip the data down into its core pieces—words and briefs—then parse those into a format that Anki can read.
 
 ---
 ## Usage Instructions
