@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/StenoAnkiEngine.dir/main.cpp.o CMakeFiles/StenoAnkiEngine.dir/classes/AVLTree.cpp.o -o StenoAnkiEngine 

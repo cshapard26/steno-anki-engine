@@ -1,3 +1,0 @@
-/home/piguy/personal_projects/steno-anki-engine/build/CMakeFiles/StenoAnkiEngine.dir
-/home/piguy/personal_projects/steno-anki-engine/build/CMakeFiles/edit_cache.dir
-/home/piguy/personal_projects/steno-anki-engine/build/CMakeFiles/rebuild_cache.dir
