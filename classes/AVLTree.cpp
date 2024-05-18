@@ -1,24 +1,20 @@
 #include "AVLTree.h"
 
 // Constructor
-template <typename T>
-AVLTree<T>::AVLTree() : root(nullptr) {}
+AVLTree::AVLTree() : root(nullptr) {}
 
 // Height Calculation
-template <typename T>
-int AVLTree<T>::height(Node* n) {
+int AVLTree::height(Node* n) {
     return n ? n->height : 0;
 }
 
 // Balance Factor Calculation
-template <typename T>
-int AVLTree<T>::getBalance(Node* n) {
+int AVLTree::getBalance(Node* n) {
     return n ? height(n->left) - height(n->right) : 0;
 }
 
 // Right Rotation
-template <typename T>
-typename AVLTree<T>::Node* AVLTree<T>::rightRotate(Node* y) {
+AVLTree::Node* AVLTree::rightRotate(Node* y) {
     Node* x = y->left;
     Node* T2 = x->right;
 
@@ -32,8 +28,7 @@ typename AVLTree<T>::Node* AVLTree<T>::rightRotate(Node* y) {
 }
 
 // Left Rotation
-template <typename T>
-typename AVLTree<T>::Node* AVLTree<T>::leftRotate(Node* x) {
+AVLTree::Node* AVLTree::leftRotate(Node* x) {
     Node* y = x->right;
     Node* T2 = y->left;
 
@@ -47,17 +42,18 @@ typename AVLTree<T>::Node* AVLTree<T>::leftRotate(Node* x) {
 }
 
 // Insertion
-template <typename T>
-typename AVLTree<T>::Node* AVLTree<T>::insert(Node* node, T key) {
+AVLTree::Node* AVLTree::insert(Node* node, std::string key, std::string value) {
     if (!node)
-        return new Node(key);
+        return new Node(key, value);
 
     if (key < node->key)
-        node->left = insert(node->left, key);
+        node->left = insert(node->left, key, value);
     else if (key > node->key)
-        node->right = insert(node->right, key);
-    else
+        node->right = insert(node->right, key, value);
+    else {
+        node->value.insert(value);
         return node;
+    }
 
     node->height = 1 + std::max(height(node->left), height(node->right));
 
@@ -83,23 +79,44 @@ typename AVLTree<T>::Node* AVLTree<T>::insert(Node* node, T key) {
 }
 
 // Public Insert Method
-template <typename T>
-void AVLTree<T>::insert(T key) {
-    root = insert(root, key);
+void AVLTree::insert(std::string key, std::string value) {
+    root = insert(root, key, value);
+}
+
+// Private Find Method
+AVLTree::Node* AVLTree::find(Node* node, std::string key) {
+    if (!node || node->key == key)
+        return node;
+
+    if (key < node->key)
+        return find(node->left, key);
+    else
+        return find(node->right, key);
+}
+
+// Public Find Method
+std::set<std::string> AVLTree::find(std::string key) {
+    Node* result = find(root, key);
+    if (result)
+        return result->value;
+    else
+        return std::set<std::string>();
 }
 
 // PreOrder Traversal
-template <typename T>
-void AVLTree<T>::preOrder(Node* root) {
+void AVLTree::preOrder(Node* root) {
     if (root) {
-        std::cout << root->key << " ";
+        std::cout << root->key << ": ";
+        for (const auto& val : root->value) {
+            std::cout << val << " ";
+        }
+        std::cout << std::endl;
         preOrder(root->left);
         preOrder(root->right);
     }
 }
 
 // Public PreOrder Method
-template <typename T>
-void AVLTree<T>::preOrder() {
+void AVLTree::preOrder() {
     preOrder(root);
 }

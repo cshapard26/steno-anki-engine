@@ -181,7 +181,14 @@ CMakeFiles/StenoAnkiEngine.dir/classes/AVLTree.cpp.o: ../classes/AVLTree.cpp \
   /usr/include/c++/11/bits/basic_ios.tcc \
   /usr/include/c++/11/bits/ostream.tcc \
   /usr/include/c++/11/istream \
-  /usr/include/c++/11/bits/istream.tcc
+  /usr/include/c++/11/bits/istream.tcc \
+  /usr/include/c++/11/set \
+  /usr/include/c++/11/bits/stl_tree.h \
+  /usr/include/c++/11/ext/aligned_buffer.h \
+  /usr/include/c++/11/bits/node_handle.h \
+  /usr/include/c++/11/bits/stl_set.h \
+  /usr/include/c++/11/bits/stl_multiset.h \
+  /usr/include/c++/11/bits/erase_if.h
 
 CMakeFiles/StenoAnkiEngine.dir/main.cpp.o: ../main.cpp \
   /usr/include/stdc-predef.h \
@@ -363,11 +370,21 @@ CMakeFiles/StenoAnkiEngine.dir/main.cpp.o: ../main.cpp \
   /usr/include/c++/11/bits/ostream.tcc \
   /usr/include/c++/11/istream \
   /usr/include/c++/11/bits/istream.tcc \
-  ../classes/AVLTree.cpp \
-  ../classes/AVLTree.h
+  ../classes/AVLTree.h \
+  /usr/include/c++/11/set \
+  /usr/include/c++/11/bits/stl_tree.h \
+  /usr/include/c++/11/ext/aligned_buffer.h \
+  /usr/include/c++/11/bits/node_handle.h \
+  /usr/include/c++/11/bits/stl_set.h \
+  /usr/include/c++/11/bits/stl_multiset.h \
+  /usr/include/c++/11/bits/erase_if.h
 
 
 ../main.cpp:
+
+/usr/include/c++/11/bits/erase_if.h:
+
+/usr/include/c++/11/bits/stl_multiset.h:
 
 /usr/include/c++/11/bits/istream.tcc:
 
@@ -429,6 +446,8 @@ CMakeFiles/StenoAnkiEngine.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/byteswap.h:
 
+/usr/include/c++/11/ext/aligned_buffer.h:
+
 /usr/include/endian.h:
 
 /usr/include/x86_64-linux-gnu/sys/types.h:
@@ -438,6 +457,8 @@ CMakeFiles/StenoAnkiEngine.dir/main.cpp.o: ../main.cpp \
 /usr/include/stdlib.h:
 
 /usr/include/c++/11/bits/functional_hash.h:
+
+/usr/include/c++/11/bits/stl_set.h:
 
 /usr/include/c++/11/string_view:
 
@@ -567,6 +588,8 @@ CMakeFiles/StenoAnkiEngine.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
 
+/usr/include/c++/11/bits/node_handle.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
 
 /usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
@@ -600,6 +623,8 @@ CMakeFiles/StenoAnkiEngine.dir/main.cpp.o: ../main.cpp \
 /usr/include/x86_64-linux-gnu/bits/floatn.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
+
+/usr/include/c++/11/bits/stl_tree.h:
 
 /usr/include/c++/11/type_traits:
 
@@ -670,6 +695,8 @@ CMakeFiles/StenoAnkiEngine.dir/main.cpp.o: ../main.cpp \
 /usr/include/x86_64-linux-gnu/bits/locale.h:
 
 /usr/include/x86_64-linux-gnu/bits/endianness.h:
+
+/usr/include/c++/11/set:
 
 /usr/include/c++/11/bits/ios_base.h:
 
