@@ -9,7 +9,8 @@
 
 
 Algorithms:
-- Dictionary look up a single word
+- ~~Dictionary look up a single word~~ 
+- Stemming
 - Make Anki file from a clippy template
 - Index all dictionary as a corpus
 - Suggest a word based off a stem

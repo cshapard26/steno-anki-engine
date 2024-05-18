@@ -1,61 +1,22 @@
 #include <iostream>
 #include "classes/AVLTree.h"
+#include "classes/DictionaryParser.h"
+#include <chrono>
 
-int main() {
+int main(int argc, char** argv) {
+    // Create an AVL tree
     AVLTree tree;
 
-    tree.insert("apple", "fruit");
-    tree.insert("banana", "fruit");
-    tree.insert("carrot", "vegetable");
-    tree.insert("apple", "tech company");
-    tree.insert("carrot", "color");
+    // Parse the JSON file and add terms to the AVL tree
+    DictionaryParser::parseAndAddToTree("../dictionaries/main.json", tree);
 
-    std::cout << "Preorder traversal of the constructed AVL tree is:\n";
-    tree.preOrder();
-
-    std::cout << "\nSearching for 'apple': ";
-    std::set<std::string> values = tree.find("apple");
-    if (!values.empty()) {
-        for (const auto& val : values) {
-            std::cout << val << " ";
-        }
-    } else {
-        std::cout << "Not Found";
-    }
-    std::cout << std::endl;
-
-    std::cout << "Searching for 'carrot': ";
-    values = tree.find("carrot");
-    if (!values.empty()) {
-        for (const auto& val : values) {
-            std::cout << val << " ";
-        }
-    } else {
-        std::cout << "Not Found";
-    }
-    std::cout << std::endl;
-
-    std::cout << "Searching for 'banana': ";
-    values = tree.find("banana");
-    if (!values.empty()) {
-        for (const auto& val : values) {
-            std::cout << val << " ";
-        }
-    } else {
-        std::cout << "Not Found";
-    }
-    std::cout << std::endl;
-
-    std::cout << "Searching for 'orange': ";
-    values = tree.find("orange");
-    if (!values.empty()) {
-        for (const auto& val : values) {
-            std::cout << val << " ";
-        }
-    } else {
-        std::cout << "Not Found";
-    }
-    std::cout << std::endl;
+    // Perform operations with the AVL tree
+    // For example, print the tree's preorder traversal
+    auto start = std::chrono::high_resolution_clock::now();
+    for (auto& i : tree.find(argv[1])) std::cout << argv[1] << ": " << i << "\n";
+    auto end = std::chrono::high_resolution_clock::now();
+    std::cout << "Time = " << std::chrono::duration_cast<std::chrono::microseconds>(end - start).count() << " us\n";
+    
 
     return 0;
 }
