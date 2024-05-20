@@ -1,19 +1,33 @@
 - [ ] Clippy to Anki C++
-- [ ] Binary Search Dictionary
+- [x] Binary Search Dictionary
 - [ ] Quick Make Flashcards from List
 - [ ] Bulk Define Words
-- [ ] Index Dictionary
+- [x] Index Dictionary
 - [ ] Suggest Words by Stem + Suffixes, etc
-- [ ] Anki Template Compatibility
-- [ ] Append --bulk or -b to input a file instead
 
 
 Algorithms:
-- ~~Dictionary look up a single word~~ 
-- Stemming
+- ~~Dictionary look up a single w*ord~~ 
 - Make Anki file from a clippy template
 - Index all dictionary as a corpus
 - Suggest a word based off a stem
-- Input an Anki template
 - Word vs Word + Brief tag
-- 
+- Phoneticisized (TPH vs. N)
+
+
+CLI:
+
+lookup [word] <dictionary>
+create ankifile [exportFile] [wordlist] <dictionary> <tags>
+create clippy2 [exportFile] [clippyFile] <dictionary> (uses native clippy if none) <tags>
+suggest [word] <suggestionsNumber> <dictionary>
+help
+
+-d <dictionary>
+-l <wordlist>
+-p <phonetic>
+-r <reverse>
+-i <caseinsensitive>
+
+
+sk-proj-IjcsOOcxgiDMUawv34r1T3BlbkFJYxpwak54HGdiJJruzpNz
