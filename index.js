@@ -6,6 +6,7 @@ DictionaryParser.parseAndAddToTree('./dictionaries/main.json', tree);
 
 const args = process.argv.slice(2);
 
+/*
 if (args.length <= 0) {
     console.log("Invalid arguments. Run 'node index.js help' for more information.");
 } else if (args[0] === "help") {
@@ -23,5 +24,7 @@ if (args.length <= 0) {
     console.log("             -i                                  makes word_list case insensitive (does not affect dictionaries)");
     console.log("\nFor further assistance, please email me at coopershapard@duck.com");
 }
+*/
+const theWord = '';
 
-console.log(process.argv[2] + ": " + [...tree.find(process.argv[2])].join(", "));
+console.log(theWord + ": " + [...tree.search(theWord)].join(", "));

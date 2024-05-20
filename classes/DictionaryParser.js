@@ -9,7 +9,7 @@ class DictionaryParser {
 
             Object.keys(jsonData).forEach(key => {
                 const value = jsonData[key];
-                tree.insert(key, value);
+                tree.insert(value, key);
             });
         } catch (err) {
             console.error(`Error: ${err}`);
