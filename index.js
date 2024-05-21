@@ -1,9 +1,11 @@
 const AVLTree = require('./classes/AVLTree');
 const DictionaryParser = require('./classes/DictionaryParser');
 const FlashcardMaker = require('./classes/FlashcardMaker');
+const GPTPrompter = require('./classes/GPTPrompter');
 
 const tree = new AVLTree();
 const Flashcards = new FlashcardMaker();
+const GPTPrompt = new GPTPrompter();
 DictionaryParser.parseAndAddToTree('./dictionaries/main.json', tree);
 
 const args = process.argv.slice(2);
@@ -36,7 +38,13 @@ if (args.length <= 0) {
     console.log(args[1] + ": " + [...DictionaryParser.trimResults(tree.search(args[1]))].join(", "));
 } else if (args[0] === "suggest") {
     addFlags(2);
-    console.log("Brief suggestion for Word: Replace with GPT Suggestion");
+    GPTPrompt.suggestBrief(args[1])
+        .then(response => {
+            console.log(`GPT-4 Suggested Briefs for "${args[1]}": ${response}`);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 } else if (args.length <= 2) {
     console.log("Invalid arguments. Run 'node index.js help' for more information.");
 } else if (args[0] === "create" && args[1] === "ankifile") {

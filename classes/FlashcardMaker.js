@@ -10,7 +10,7 @@ class FlashcardMaker {
         this.clippyOutputFileName = "outputs/clippy2-anki.csv";
     }
 
-    makeFromWordList (wordList, dictionary) {
+    makeFromWordList(wordList, dictionary) {
         DictionaryParser.parseAndAddToTree(dictionary, this.tree);
 
         const linesSet = new Set();
@@ -25,7 +25,7 @@ class FlashcardMaker {
         fs.writeFileSync(this.ankiOutputFileName, '');
 
         linesSet.forEach(word => {
-            fs.writeFileSync(this.ankiOutputFileName, `${word},${[...DictionaryParser.trimResults(this.tree.search(word))].join(",")}\n`, {encoding: 'utf-8', flag: 'a'});
+            fs.writeFileSync(this.ankiOutputFileName, `${word},${[...DictionaryParser.trimResults(this.tree.search(word))].join(",")}\n`, { encoding: 'utf-8', flag: 'a' });
         });
 
     }
@@ -40,7 +40,7 @@ class FlashcardMaker {
 
         const briefCollection = {};
         const lines = data.split('\n');
-        
+
         lines.forEach(line => {
             if (!line.startsWith('-')) {
                 const parts = line.split("4m");
