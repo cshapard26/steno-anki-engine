@@ -6,8 +6,6 @@
 - [ ] Phoneticisized (TPH vs. N)
 - [x] AI Suggesions
 
-sk-proj-IjcsOOcxgiDMUawv34r1T3BlbkFJYxpwak54HGdiJJruzpNz
-
 Dependencies:
 1. Node.js
 

@@ -27,7 +27,7 @@ if (args.length <= 0) {
     console.log("                -p                                  uses phonetic results instead of standard ones (NAIM vs TPHAEUPL). warning: not all conflicts are accounted for (TPHR will map to FL, not NR, etc)");
     console.log("                -r                                  reverses results to be BRIEF,WORD instead of WORD,BRIEF. does not affect clippy2's outputs");
     console.log("                -i                                  makes word_list case insensitive (does not affect dictionaries)");
-    console.log("                -e <export_filename>                changes the default export filename of the outputs (default is outputs/ankifile.csv)");
+    console.log("                -e <export_filename>                changes the default export filename of the outputs (default is outputs/ankifile.csv or outputs/clippy2-anki.csv)");
     console.log("                -t <threshold>                      for the 'create clippy2' command. specifies the number of misstrokes needed to add the brief to the final list (default is 5)");
     console.log("\nFor further assistance, please email me at coopershapard@duck.com");
     return;
@@ -69,15 +69,3 @@ function addFlags(start) {
     // -e, change exportname in Flashcardmaker
     // -t, just change the funcitoncall
 }
-
-/*
-const theWord = 'building';
-
-console.log(theWord + ": " + [...DictionaryParser.trimResults(tree.search(theWord))].join(", "));
-
-const Flashcards = new FlashcardMaker();
-
-Flashcards.makeFromClippy2("clippy_files/clippy_2.org", 5);
-
-Flashcards.makeFromWordList("clippy_files/testList.txt", "dictionaries/main.json");
-*/
