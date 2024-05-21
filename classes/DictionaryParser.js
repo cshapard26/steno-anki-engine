@@ -12,7 +12,7 @@ class DictionaryParser {
                 tree.insert(value, key);
             });
         } catch (err) {
-            console.error(`Error: ${err}`);
+            console.error(`${err}`);
         }
     }
 

@@ -8,6 +8,7 @@ class FlashcardMaker {
         this.tree = new AVLTree();
         this.ankiOutputFileName = "outputs/ankifile.csv";
         this.clippyOutputFileName = "outputs/clippy2-anki.csv";
+        this.reversed = false;
     }
 
     makeFromWordList(wordList, dictionary) {
@@ -25,7 +26,11 @@ class FlashcardMaker {
         fs.writeFileSync(this.ankiOutputFileName, '');
 
         linesSet.forEach(word => {
-            fs.writeFileSync(this.ankiOutputFileName, `${word},${[...DictionaryParser.trimResults(this.tree.search(word))].join(",")}\n`, { encoding: 'utf-8', flag: 'a' });
+            if (this.reversed) {
+                fs.writeFileSync(this.ankiOutputFileName, `${[...DictionaryParser.trimResults(this.tree.search(word))].join(",")},${word}\n`, { encoding: 'utf-8', flag: 'a' });
+            } else {
+                fs.writeFileSync(this.ankiOutputFileName, `${word},${[...DictionaryParser.trimResults(this.tree.search(word))].join(",")}\n`, { encoding: 'utf-8', flag: 'a' });
+            }
         });
 
     }
@@ -51,7 +56,12 @@ class FlashcardMaker {
                         brief = brief.split(",")[0];
                     }
                     if (!word.endsWith("0m")) {
-                        const pair = `${word},${brief}`;
+                        let pair;
+                        if (this.reversed) {
+                            pair = `${brief},${word}`;
+                        } else {
+                            pair = `${word},${brief}`;
+                        }
                         if (!briefCollection[pair]) {
                             briefCollection[pair] = 0;
                         }

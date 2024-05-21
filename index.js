@@ -9,6 +9,7 @@ const GPTPrompt = new GPTPrompter();
 DictionaryParser.parseAndAddToTree('./dictionaries/main.json', tree);
 
 const args = process.argv.slice(2);
+let threshold = 5;
 
 if (args.length <= 0) {
     console.log("Invalid arguments. Run 'node index.js help' for more information.");
@@ -34,10 +35,10 @@ if (args.length <= 0) {
 } else if (args.length <= 1) {
     console.log("Invalid arguments. Run 'node index.js help' for more information.");
 } else if (args[0] === "lookup") {
-    addFlags(2);
+    if (!addFlags(2)) return false;
     console.log(args[1] + ": " + [...DictionaryParser.trimResults(tree.search(args[1]))].join(", "));
 } else if (args[0] === "suggest") {
-    addFlags(2);
+    if (!addFlags(2)) return false;
     GPTPrompt.suggestBrief(args[1])
         .then(response => {
             console.log(`GPT-4 Suggested Briefs for "${args[1]}": ${response}`);
@@ -48,11 +49,12 @@ if (args.length <= 0) {
 } else if (args.length <= 2) {
     console.log("Invalid arguments. Run 'node index.js help' for more information.");
 } else if (args[0] === "create" && args[1] === "ankifile") {
-    addFlags(3);
+    if (!addFlags(3)) return false;
     Flashcards.makeFromWordList(args[2], "dictionaries/main.json");
 } else if (args[0] === "create" && args[1] === "clippy2") {
-    addFlags(3);
-    Flashcards.makeFromClippy2(args[2], 5);
+    if (!addFlags(3)) return false;
+    Flashcards.makeFromClippy2(args[2], threshold);
+
 } else {
     console.log("Invalid arguments. Run 'node index.js help' for more information.");
 }
@@ -61,11 +63,60 @@ return;
 
 
 function addFlags(start) {
-    // -d, just parseAndAddToDicitonary
+    for (let i = start; i < args.length; i++) {
+        if (args[i].startsWith("-")) {
+            if (args[i] === "-d") {
+                if (args.length >= i + 2) {
+                    i++;
+                    DictionaryParser.parseAndAddToTree(args[i], tree);
+                } else {
+                    console.log("Invalid arguments. Run 'node index.js help' for more information.");
+                    return false;
+                }
+            } else if (args[i] === "-l") {
+
+            } else if (args[i] === "-p") {
+
+            } else if (args[i] === "-r") {
+                Flashcards.reversed = true;
+            } else if (args[i] === "-i") {
+
+            } else if (args[i] === "-e") {
+                if (args.length >= i + 2) {
+                    i++;
+                    Flashcards.ankiOutputFileName = args[i];
+                    Flashcards.clippyOutputFileName = args[i];
+                } else {
+                    console.log("Invalid arguments. Run 'node index.js help' for more information.");
+                    return false;
+                }
+            } else if (args[i] === "-t") {
+                if (args.length >= i + 2) {
+                    i++;
+                    if (!Number.isInteger(+args[i])) {
+                        console.log("Invalid arguments. Run 'node index.js help' for more information.");
+                        return false;
+                    }
+                    threshold = args[i];
+                } else {
+                    console.log("Invalid arguments. Run 'node index.js help' for more information.");
+                    return false;
+                }
+            } else {
+                console.log("Invalid arguments. Run 'node index.js help' for more information.");
+                return false;
+            }
+
+
+        } else {
+            console.log("Invalid arguments. Run 'node index.js help' for more information.");
+            return false;
+        }
+        
+    }
+    return true;
     // -l, just do another search and append to the file
     // -p, modify the "search" function
     // -r, modify the "search" results, or output in clippyoutput
     // -i, do another search with the word capital and lowercase
-    // -e, change exportname in Flashcardmaker
-    // -t, just change the funcitoncall
 }
