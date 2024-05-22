@@ -1,5 +1,5 @@
 const https = require('https');
-const { resolve } = require('path');
+
 class GPTPrompter {
     constructor() {
         this.api = process.env.OPENAI_API_KEY;
@@ -32,12 +32,10 @@ class GPTPrompter {
             const req = https.request(options, (res) => {
                 let data = '';
 
-                // A chunk of data has been received.
                 res.on('data', (chunk) => {
                     data += chunk;
                 });
 
-                // The whole response has been received.
                 res.on('end', () => {
                     const response = JSON.parse(data);
                     let message;
@@ -51,16 +49,12 @@ class GPTPrompter {
                 });
             });
 
-
-            // Handle error
             req.on('error', (e) => {
                 reject(e);
             });
 
-            // Send the request with the requestData
             req.write(JSON.stringify(requestBody));
             req.end();
-
         });
     }
 }

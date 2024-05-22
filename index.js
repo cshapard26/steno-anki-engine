@@ -4,7 +4,7 @@ const FlashcardMaker = require('./classes/FlashcardMaker');
 const GPTPrompter = require('./classes/GPTPrompter');
 
 const tree = new AVLTree();
-const Flashcards = new FlashcardMaker(tree);
+const flashcards = new FlashcardMaker(tree);
 const GPTPrompt = new GPTPrompter();
 DictionaryParser.parseAndAddToTree('./dictionaries/main.json', tree);
 
@@ -52,17 +52,15 @@ if (args.length <= 0) {
 } else if (args[0] === "create" && args[1] === "ankifile") {
     if (!addFlags(3)) return false;
     wordList.push(args[2]);
-    Flashcards.makeFromWordList(wordList);
+    flashcards.makeFromWordList(wordList);
 } else if (args[0] === "create" && args[1] === "clippy2") {
     if (!addFlags(3)) return false;
-    Flashcards.makeFromClippy2(args[2], threshold);
-
+    flashcards.makeFromClippy2(args[2], threshold);
 } else {
     console.log("Invalid arguments. Run 'node index.js help' for more information.");
 }
 
 return;
-
 
 function addFlags(start) {
     for (let i = start; i < args.length; i++) {
@@ -86,14 +84,14 @@ function addFlags(start) {
             } else if (args[i] === "-p") {
                 tree.phonetic = true;
             } else if (args[i] === "-r") {
-                Flashcards.reversed = true;
+                flashcards.reversed = true;
             } else if (args[i] === "-i") {
-                Flashcards.caseInsensitive = true;
+                flashcards.caseInsensitive = true;
             } else if (args[i] === "-e") {
                 if (args.length >= i + 2) {
                     i++;
-                    Flashcards.ankiOutputFileName = args[i];
-                    Flashcards.clippyOutputFileName = args[i];
+                    flashcards.ankiOutputFileName = args[i];
+                    flashcards.clippyOutputFileName = args[i];
                 } else {
                     console.log("Invalid arguments. Run 'node index.js help' for more information.");
                     return false;
@@ -114,13 +112,10 @@ function addFlags(start) {
                 console.log("Invalid arguments. Run 'node index.js help' for more information.");
                 return false;
             }
-
-
         } else {
             console.log("Invalid arguments. Run 'node index.js help' for more information.");
             return false;
         }
-
     }
     return true;
 }

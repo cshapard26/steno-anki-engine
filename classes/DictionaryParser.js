@@ -1,5 +1,4 @@
 const fs = require('fs');
-const { AVLTree } = require('./AVLTree');
 
 class DictionaryParser {
     static parseAndAddToTree(filename, tree) {
@@ -30,6 +29,7 @@ class DictionaryParser {
                 outputSet.add(word);
             }
         });
+
         if (outputSet.size > 1) {
             let newSet = new Set();
             outputSet.forEach(word => {
@@ -42,6 +42,7 @@ class DictionaryParser {
                 return newSet;
             }
         }
+
         return outputSet;
     }
 }

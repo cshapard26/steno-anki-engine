@@ -1,5 +1,4 @@
 const fs = require('fs');
-const AVLTree = require('./AVLTree');
 const DictionaryParser = require('./DictionaryParser');
 
 
@@ -22,7 +21,7 @@ class FlashcardMaker {
             try {
                 data = fs.readFileSync(file, 'utf-8');
             } catch {
-                console.error(`File ${file} does not exist. Ignoring.`);
+                console.error(`Error opening file "${file}". Ignoring.`);
                 return;
             }
             const lines = data.split('\n');
@@ -47,12 +46,12 @@ class FlashcardMaker {
         });
     }
 
-    makeFromClippy2(importFileName, occurrenceThreshold = 5) {
+    makeFromClippy2(importFileName, occurrenceThreshold) {
         let data;
         try {
             data = fs.readFileSync(importFileName, 'utf-8');
         } catch (err) {
-            throw new Error("Error opening file. Make sure the file name is spelled correctly.");
+            throw new Error(`Error opening file "${importFileName}". Make sure the file name is spelled correctly.`);
         }
 
         const briefCollection = {};
@@ -74,6 +73,7 @@ class FlashcardMaker {
                         } else {
                             pair = `${word},${brief}`;
                         }
+
                         if (!briefCollection[pair]) {
                             briefCollection[pair] = 0;
                         }
@@ -83,13 +83,11 @@ class FlashcardMaker {
             }
         });
 
-        // Sort the dictionary by occurrence
         const sortedBriefs = Object.entries(briefCollection)
             .filter(([pair, count]) => count >= occurrenceThreshold)
             .sort((a, b) => b[1] - a[1]);
 
-        const outputData = sortedBriefs.map(([pair, count]) => pair + ',' + count).join('\n');
-        fs.writeFileSync(this.clippyOutputFileName, outputData, 'utf-8');
+        fs.writeFileSync(this.clippyOutputFileName, sortedBriefs.map(([pair, count]) => pair + ',' + count).join('\n'), 'utf-8');
     }
 }
 
