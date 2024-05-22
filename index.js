@@ -4,12 +4,13 @@ const FlashcardMaker = require('./classes/FlashcardMaker');
 const GPTPrompter = require('./classes/GPTPrompter');
 
 const tree = new AVLTree();
-const Flashcards = new FlashcardMaker();
+const Flashcards = new FlashcardMaker(tree);
 const GPTPrompt = new GPTPrompter();
 DictionaryParser.parseAndAddToTree('./dictionaries/main.json', tree);
 
 const args = process.argv.slice(2);
 let threshold = 5;
+const wordList = [];
 
 if (args.length <= 0) {
     console.log("Invalid arguments. Run 'node index.js help' for more information.");
@@ -50,7 +51,8 @@ if (args.length <= 0) {
     console.log("Invalid arguments. Run 'node index.js help' for more information.");
 } else if (args[0] === "create" && args[1] === "ankifile") {
     if (!addFlags(3)) return false;
-    Flashcards.makeFromWordList(args[2], "dictionaries/main.json");
+    wordList.push(args[2]);
+    Flashcards.makeFromWordList(wordList);
 } else if (args[0] === "create" && args[1] === "clippy2") {
     if (!addFlags(3)) return false;
     Flashcards.makeFromClippy2(args[2], threshold);
@@ -74,13 +76,19 @@ function addFlags(start) {
                     return false;
                 }
             } else if (args[i] === "-l") {
-
+                if (args.length >= i + 2) {
+                    i++;
+                    wordList.push(args[i]);
+                } else {
+                    console.log("Invalid arguments. Run 'node index.js help' for more information.");
+                    return false;
+                }
             } else if (args[i] === "-p") {
-
+                tree.phonetic = true;
             } else if (args[i] === "-r") {
                 Flashcards.reversed = true;
             } else if (args[i] === "-i") {
-
+                Flashcards.caseInsensitive = true;
             } else if (args[i] === "-e") {
                 if (args.length >= i + 2) {
                     i++;
@@ -112,11 +120,7 @@ function addFlags(start) {
             console.log("Invalid arguments. Run 'node index.js help' for more information.");
             return false;
         }
-        
+
     }
     return true;
-    // -l, just do another search and append to the file
-    // -p, modify the "search" function
-    // -r, modify the "search" results, or output in clippyoutput
-    // -i, do another search with the word capital and lowercase
 }

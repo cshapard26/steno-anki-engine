@@ -40,7 +40,13 @@ class GPTPrompter {
                 // The whole response has been received.
                 res.on('end', () => {
                     const response = JSON.parse(data);
-                    const message = response.choices[0].message.content;
+                    let message;
+                    try {
+                        message = response.choices[0].message.content;
+                    } catch {
+                        console.log(response);
+                        reject();
+                    }
                     resolve(message);
                 });
             });

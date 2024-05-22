@@ -6,6 +6,7 @@ class AVLNode {
         this.left = null;
         this.right = null;
         this.height = 1;
+        this.phonetic = false;
     }
 }
 
@@ -132,6 +133,9 @@ class AVLTree {
 
     // Search for a key in the AVL tree
     search(key) {
+        let output = this._search(this.root, key).value;
+        output = new Set([...output].map(this.toPhonetic));
+        if (this.phonetic) return this.contains(key) ? output : new Set();
         return this.contains(key) ? this._search(this.root, key).value : new Set();
     }
 
@@ -151,6 +155,54 @@ class AVLTree {
     contains(key) {
         return this._search(this.root, key) !== null;
     }
+
+    toPhonetic(word) {
+        if (typeof word !== 'string') {
+            console.error('Input must be a string');
+            return word;
+        }
+
+        // Define the replacement rules
+        const replacements = {
+            "TPH": "N",
+            "TP": "F",
+            "KP": "X",
+            "HR": "L",
+            "TK": "D",
+            "PW": "B",
+            "EU": "I",
+            "SR": "V",
+            "TKPW": "G",
+            "BG": "K",
+            "PH": "M",
+            "SKWR": "J",
+            "KWR": "Y",
+            "PL": "M",
+            "PB": "N",
+            "PBLG": "J",
+            "KH": "CH",
+            "BGS": "CTION",
+            "GS": "TION",
+            "FP": "CH",
+            "RB": "SH",
+            "FRB": "RV",
+            "AOU": "UU",
+            "AEU": "AI",
+            "OEU": "OI",
+            "AOE": "EE",
+            "AOEU": "II"
+        };
+
+        // Replace each occurrence of the specified sequences
+        let output = word;
+        for (const [sequence, replacement] of Object.entries(replacements)) {
+            const regex = new RegExp(sequence, 'g');
+            output = output.replace(regex, replacement);
+        }
+
+        return output;
+    }
 }
+
 
 module.exports = AVLTree;

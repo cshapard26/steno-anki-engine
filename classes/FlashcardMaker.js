@@ -4,26 +4,39 @@ const DictionaryParser = require('./DictionaryParser');
 
 
 class FlashcardMaker {
-    constructor() {
-        this.tree = new AVLTree();
+    constructor(tree) {
+        this.tree = tree;
         this.ankiOutputFileName = "outputs/ankifile.csv";
         this.clippyOutputFileName = "outputs/clippy2-anki.csv";
         this.reversed = false;
+        this.caseInsensitive = false;
     }
 
-    makeFromWordList(wordList, dictionary) {
-        DictionaryParser.parseAndAddToTree(dictionary, this.tree);
+    makeFromWordList(wordList) {
+        fs.writeFileSync(this.ankiOutputFileName, '');
 
         const linesSet = new Set();
-        const data = fs.readFileSync(wordList, 'utf-8');
-        const lines = data.split('\n');
-        lines.forEach(line => {
-            const trimmedLine = line.trim();
-            if (trimmedLine) {
-                linesSet.add(trimmedLine);
+
+        wordList.forEach(file => {
+            let data;
+            try {
+                data = fs.readFileSync(file, 'utf-8');
+            } catch {
+                console.error(`File ${file} does not exist. Ignoring.`);
+                return;
             }
+            const lines = data.split('\n');
+            lines.forEach(line => {
+                const trimmedLine = line.trim();
+                if (trimmedLine) {
+                    if (!this.caseInsensitive) {
+                        linesSet.add(trimmedLine);
+                    } else {
+                        linesSet.add(trimmedLine.toLowerCase());
+                    }
+                }
+            });
         });
-        fs.writeFileSync(this.ankiOutputFileName, '');
 
         linesSet.forEach(word => {
             if (this.reversed) {
@@ -32,7 +45,6 @@ class FlashcardMaker {
                 fs.writeFileSync(this.ankiOutputFileName, `${word},${[...DictionaryParser.trimResults(this.tree.search(word))].join(",")}\n`, { encoding: 'utf-8', flag: 'a' });
             }
         });
-
     }
 
     makeFromClippy2(importFileName, occurrenceThreshold = 5) {
