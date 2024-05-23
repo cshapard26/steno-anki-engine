@@ -40,5 +40,5 @@ This steno-anki-engine is a lightweight Node.js script that:
 - Sets the clippy_2 output threshold to 50 (instead of the default 5) with the `-t` flag, which means that only errors that occured more than 50 times will show up in the final file
 
 `node index.js suggest watermelon`
-- Sends a request to GPT-3.5 asking for 3 possible briefs for the word `watermelon`. Results may vary. Multiple atttempts may yield better results.
+- Sends a request to a specially trained GPT-3.5 asking for 3 possible briefs for the word `watermelon`. Results may vary. Multiple atttempts may yield better results.
 - Example output: `GPT suggested briefs for "watermelon": WAURL, WA*URPL, WA*EPL`
