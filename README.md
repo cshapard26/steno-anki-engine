@@ -5,12 +5,12 @@
 [Anki](https://github.com/ankitects/anki) is a popular spaced repition flashcard app that algorithmically burns terms into the user's memory, which is a must have for any student learning stenography.
 
 This steno-anki-engine is a lightweight Node.js script that:
-1. Parses clippy_2.org files and extracts the important information from among the loads of extraneous data.
+1. Parses clippy_2.org files and extracts the important information from the loads of extraneous data.
 2. Allows quick look-up in any steno dictionary and thins results down to the best briefs (based on stroke number and disambiguifiers).
 3. Creates a word-brief map file specifically formatted for Anki from a large list of undefined words.
 4. Allows for the addition of custom dictionaries for any lookup or word list.
 5. Phoneticizes briefs for more advanced learners.
-6. Leverages a custon, fine-tuned AI from OpenAI's [gpt-3.5-turbo-0125](https://platform.openai.com/docs/models/gpt-3-5-turbo) to accurately suggest briefs for words not found in a steno dictionary.
+6. Leverages a custom, fine-tuned AI from OpenAI's [gpt-3.5-turbo-0125](https://platform.openai.com/docs/models/gpt-3-5-turbo) to accurately suggest briefs for words not found in a steno dictionary.
 
 ## Usage Instructions
 ### Downloading and Running
