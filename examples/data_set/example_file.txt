@@ -9,7 +9,7 @@ stenography
 joy
 {a^}
 lift
-canopy
+Canopy
 yellow
 although
 altogether

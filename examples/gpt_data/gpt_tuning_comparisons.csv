@@ -1,0 +1,9 @@
+promptWord,gpt-4-turbo,ft:gpt-3.5-turbo-0125:singularity:stenobriefs:9SAIm2bn
+watermelon,WAT/MEL;W-M/LON;WAT/L-N,WAERPL;WA*EPL;WAURPL
+synthesis,STHES;STHIS;SNTHS,S*EUS;S*EUS/Z*EUS;S*EUS/-S
+quadruple,KWRAURP;QURP;QAD/RUP,KWRAO*UBL;KWRAO*UPL,KWRAOURPL
+caliber,K-B;K-L-R;K-L-B,K-L/*ER;K-L/K-L,KAL/*ER
+refresh,R-FR;R-FSH;REFRSH,RE/FR*ERB;R*EFR,R*EFR/RESH
+
+# of results possible on a stenotype (objective),10/15,14/15
+# of results that are viable (subjective),6/15,11/15

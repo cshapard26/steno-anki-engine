@@ -10,7 +10,7 @@ class GPTPrompter {
     async suggestBrief(userWord) {
         return new Promise((resolve, reject) => {
             const requestBody = {
-                model: 'gpt-4-turbo',
+                model: 'ft:gpt-3.5-turbo-0125:singularity:stenobriefs:9SAIm2bn',
                 messages: [
                     { role: 'system', content: 'You are a helpful stenography chat bot.' },
                     { role: 'user', content: `Give me three different suggestions for stenography briefs for the word ${userWord}. They should follow all the rules of stenography and have the minimal number of strokes. Only include the briefs in your answer, and make sure they do not conflict with existing briefs.` },
