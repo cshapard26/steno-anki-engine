@@ -4,6 +4,4 @@ Dependencies:
 
 
 Ideas
-1. Train a fine-tuned AI
-2. Add "Undefined" to anki words with no defined brief
-3. Documentation
+1. Documentation

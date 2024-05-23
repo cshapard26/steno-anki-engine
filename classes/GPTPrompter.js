@@ -12,8 +12,8 @@ class GPTPrompter {
             const requestBody = {
                 model: 'gpt-4-turbo',
                 messages: [
-                    { role: 'system', content: 'You are a helpful assistant.' },
-                    { role: 'user', content: `Give me three different suggestions for stenography briefs for the word ${userWord}. They should follow all the phonetic rules of stenography and be made of only one stroke, if possible, but can be up to three. Check your work to make sure they do not conflict with any other briefs in a standard main.json dictionary and are spelled with correct Steno Order (STKPWHRAO*EUFRPBLGTSDZ). Only include the briefs in your answer, each seperated by a comma.` },
+                    { role: 'system', content: 'You are a helpful stenography chat bot.' },
+                    { role: 'user', content: `Give me three different suggestions for stenography briefs for the word ${userWord}. They should follow all the rules of stenography and have the minimal number of strokes. Only include the briefs in your answer, and make sure they do not conflict with existing briefs.` },
                 ],
                 max_tokens: 150,
                 temperature: 0.3
