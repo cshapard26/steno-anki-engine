@@ -23,7 +23,7 @@ This steno-anki-engine is a lightweight Node.js script that:
   - `node index.js suggest <word>` which uses AI to suggest a brief for the given word
 
 ### Setting up OpenAI API Requests
- Due to the nature of GitHub, I am unable to share my own API key. Thus, if you wish to use the `suggest` feature, then you must provide your own. To do so, you must first create an API key from OpenAI (you must add a minimun of $5.00 to your account for this step). You can find official instructions on how to get your token [here](https://platform.openai.com/api-keys). Then, either provide your token to the terminal as an environment variable named `OPENAI_API_KEY`, or in the `classes/GPTPrompter.js` file, replace `process.env.OPENAI_API_KEY` with your API key. If all goes correctly, you should now be able to run the `node index.js suggest <word` command.
+ Due to the nature of GitHub, I am unable to share my own API key. Thus, if you wish to use the `suggest` feature, then you must provide your own. To do so, you must first create an API key from OpenAI (you must add a minimun of $5.00 to your account for this step). You can find official instructions on how to get your token [here](https://platform.openai.com/api-keys). Then, either provide your token to the terminal as an environment variable named `OPENAI_API_KEY`, or in the `classes/GPTPrompter.js` file, replace `process.env.OPENAI_API_KEY` with your API key. If all goes correctly, you should now be able to run the `node index.js suggest <word>` command.
 
 ### Example Commands
 
