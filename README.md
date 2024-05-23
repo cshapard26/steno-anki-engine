@@ -18,4 +18,6 @@ Though clippy_2 is a wonderful program that generates an immense amount of data,
 
 
 ## Dependencies
-jsoncpp
+1. Node.js
+2. https://github.com/Josiah-tan/plover_clippy_2
+
