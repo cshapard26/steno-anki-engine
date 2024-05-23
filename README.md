@@ -18,8 +18,8 @@ This steno-anki-engine is a lightweight Node.js script that:
 - Create a copy of this repo or download it as a zip file. You can find official instructions on how to do that [here](https://docs.github.com/en/get-started/start-your-journey/downloading-files-from-github). 
 - In your terminal, cd into the repo.
 - Run `node index.js help` for a comprehensive list of all the avaliable commands. Important ones include:
-  - `node index.js create ankifile <word_list>` which creates defines all words in a file and formats it for export to Anki
-  - `node index.js create clippy2 <clippy_2.org file location>` which extracts the most common mistrokes from a clippy_2.org file and formats them for Anki
+  - `node index.js create ankifile <word_list>` which defines all words in a file and formats it for export to Anki
+  - `node index.js create clippy2 <clippy_2.org file location>` which extracts the most common misstrokes from a clippy_2.org file and formats them for Anki
   - `node index.js suggest <word>` which uses AI to suggest a brief for the given word
 
 ### Setting up OpenAI API Requests
