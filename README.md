@@ -1,6 +1,6 @@
 # Steno Anki Engine
 ## What is it?
-[Clippy2](https://github.com/Josiah-tan/plover_clippy_2) is a community add-on for Open Steno Project's [stenography](https://en.wikipedia.org/wiki/Stenotype) software [Plover](https://github.com/openstenoproject/plover). The add-on locally tracks a user's keystrokes and creates a datalog anytime the user executes a suboptimal brief (a word on the stenotpye).
+[Clippy2](https://github.com/Josiah-tan/plover_clippy_2) is a community add-on for Open Steno Project's [stenography](https://en.wikipedia.org/wiki/Stenotype) software [Plover](https://github.com/openstenoproject/plover). The add-on locally tracks a user's keystrokes and creates a datalog any time the user executes a suboptimal brief (a word on the stenotpye).
 
 [Anki](https://github.com/ankitects/anki) is a popular spaced repition flashcard app that algorithmically burns terms into the user's memory, which is a must have for any student learning stenography.
 
