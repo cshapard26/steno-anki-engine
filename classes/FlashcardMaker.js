@@ -39,9 +39,9 @@ class FlashcardMaker {
 
         linesSet.forEach(word => {
             if (this.reversed) {
-                fs.writeFileSync(this.ankiOutputFileName, `${[...DictionaryParser.trimResults(this.tree.search(word))].join(",")},${word}\n`, { encoding: 'utf-8', flag: 'a' });
+                fs.writeFileSync(this.ankiOutputFileName, `"${[...DictionaryParser.trimResults(this.tree.search(word))].join(", ")}",${word}\n`, { encoding: 'utf-8', flag: 'a' });
             } else {
-                fs.writeFileSync(this.ankiOutputFileName, `${word},${[...DictionaryParser.trimResults(this.tree.search(word))].join(",")}\n`, { encoding: 'utf-8', flag: 'a' });
+                fs.writeFileSync(this.ankiOutputFileName, `${word},"${[...DictionaryParser.trimResults(this.tree.search(word))].join(", ")}"\n`, { encoding: 'utf-8', flag: 'a' });
             }
         });
     }
