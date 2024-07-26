@@ -27,6 +27,7 @@ if (args.length <= 0) {
     console.log("                -d <dictionary>                      adds an additional dictionary to the search. default behavior is to only include dictionaries/main.json (Plover's default dictionary)");
     console.log("                -l <word_list>                       adds an additional word_list to the search");
     console.log("                -p                                   uses phonetic results instead of standard ones (NAIM vs TPHAEUPL). warning: not all conflicts are accounted for (TPHR will map to FL, not NR, etc)");
+    console.log("                -h                                   hides words in the output file that did not find a matching brief. Otherwise, displays [No Brief Found]");
     console.log("                -r                                   reverses results to be BRIEF,WORD instead of WORD,BRIEF. does not affect clippy2's outputs");
     console.log("                -i                                   makes word_list case insensitive (does not affect dictionaries)");
     console.log("                -e <export_filename>                 changes the default export filename of the outputs (default is outputs/ankifile.csv or outputs/clippy2-anki.csv)");
@@ -85,6 +86,8 @@ function addFlags(start) {
                 tree.phonetic = true;
             } else if (args[i] === "-r") {
                 flashcards.reversed = true;
+            } else if (args[i] === "-h") {
+                    flashcards.hideNaN = true;
             } else if (args[i] === "-i") {
                 flashcards.caseInsensitive = true;
             } else if (args[i] === "-e") {

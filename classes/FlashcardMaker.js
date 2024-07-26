@@ -9,6 +9,7 @@ class FlashcardMaker {
         this.clippyOutputFileName = "outputs/clippy2-anki.csv";
         this.reversed = false;
         this.caseInsensitive = false;
+        this.hideNaN = false;
     }
 
     makeFromWordList(wordList) {
@@ -38,10 +39,15 @@ class FlashcardMaker {
         });
 
         linesSet.forEach(word => {
-            if (this.reversed) {
-                fs.writeFileSync(this.ankiOutputFileName, `"${[...DictionaryParser.trimResults(this.tree.search(word))].join(", ")}",${word}\n`, { encoding: 'utf-8', flag: 'a' });
+            const briefList = [...DictionaryParser.trimResults(this.tree.search(word))]
+            if (this.hideNaN && (briefList[0] == "[No Brief Found]")) {
+                // Skip
             } else {
-                fs.writeFileSync(this.ankiOutputFileName, `${word},"${[...DictionaryParser.trimResults(this.tree.search(word))].join(", ")}"\n`, { encoding: 'utf-8', flag: 'a' });
+                if (this.reversed) {
+                    fs.writeFileSync(this.ankiOutputFileName, `"${briefList.join(", ")}",${word}\n`, { encoding: 'utf-8', flag: 'a' });
+                } else {
+                    fs.writeFileSync(this.ankiOutputFileName, `${word},"${briefList.join(", ")}"\n`, { encoding: 'utf-8', flag: 'a' });
+                }
             }
         });
     }
